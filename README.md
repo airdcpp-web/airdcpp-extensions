@@ -4,8 +4,18 @@
 
 AirDC++ extensions use [AirDC++ Web API](http://docs.airdcpp.apiary.io) to communicate with the application via WebSocket or HTTP REST calls. Extensions are launched in a separate process with the specified [scripting engine](#scripting-engines) and their lifecycle and corresponding API sessions are managed by the application.
 
+## Resources
 
-#### Scripting engines
+- [AirDC++ Web API reference](http://apidocs.airdcpp.net)
+- [Example extensions for Javascript (WebSocket)](https://github.com/airdcpp-web/airdcpp-extension-js/tree/master/examples)
+- [Example extension for Python 3.x (HTTP REST)](https://github.com/airdcpp-web/airdcpp-example-python-extension)
+- [Extension starter project for JavaScript](https://github.com/airdcpp-web/airdcpp-create-extension)
+
+## Public extension directory
+
+The application uses [npm](https://www.npmjs.com) for public extension listing. The [extension structure](#extension-content) is also similar as the one used by npm packages.
+
+## Scripting engines
 
 Extensions are language-agnostic. However, [Node.js](https://nodejs.org) (JavaScript) is the preferred scripting engine as it will shipped with the future Windows application versions, and development utilities and most code examples are targeted for it.
 
