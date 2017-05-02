@@ -2,7 +2,7 @@
 
 >This document defines the low-level AirDC++ extension specifications. If you are looking into developing an own extension, you might want to check out the [airdcpp-create-extension](https://github.com/airdcpp-web/airdcpp-create-extension) JavaScript starter project instead, which provides various abstractions for developers.
 
-AirDC++ extensions use [AirDC++ Web API](http://docs.airdcpp.apiary.io) to communicate with the application via WebSocket or HTTP REST calls. Extensions are launched in a separate process with the specified [scripting engine](#scripting-engines) and their lifecycle and corresponding API sessions are managed by the application.
+AirDC++ extensions use [AirDC++ Web API](http://apidocs.airdcpp.net) to communicate with the application via [WebSockets or HTTP REST calls](https://github.com/airdcpp-web/airdcpp-apidocs/blob/master/communication-protocols.md). Extensions are launched in a separate process with the specified [scripting engine](#scripting-engines) and their lifecycle and corresponding API sessions are managed by the application.
 
 ## Resources
 
@@ -40,7 +40,7 @@ Example extension startup command:
 | :--- | :--- | :---: | :--- |
 | **name** | `string` | airdcpp-example-ext | Name of the extension |
 | **apiUrl** | `string` | [::1]:5600/api/v1/ | HTTP (non-TLS) URL that the application should use when accessing the API. The implementation should add the wanted protocol prefix (`ws://` or `http://`) based on the communication method being used. |
-| **authToken** | `string` | b1f872e9-ddf8-4d55-98e4-ae1a024908cd | Session token to use for authentication. WebSockets should use the [socket authorization method](http://docs.airdcpp.apiary.io/#reference/sessions/authentication/socket) while the [`Authorization` HTTP header](http://docs.airdcpp.apiary.io/#introduction/communicating-via-http/session-based-authentication) should be set with HTTP REST calls |
+| **authToken** | `string` | b1f872e9-ddf8-4d55-98e4-ae1a024908cd | Session token to use for authentication. WebSockets should use the [socket authorization method](http://docs.airdcpp.apiary.io/#reference/sessions/authentication/socket) while the [`Authorization` HTTP header](https://github.com/airdcpp-web/airdcpp-apidocs/blob/master/communication-protocols.md#communicating-via-http) should be set with HTTP REST calls |
 | **logPath** | `string` | C:\AirDC\Settings\extensions\airdcpp-example-ext\logs\ | Directory that can be used for saving extension-specific log files |
 | **settingsPath** | `string` | C:\AirDC\Settings\extensions\airdcpp-example-ext\settings\ | Directory that can be used for saving extension-specific configuration files |
 | **debug** | `boolean` | | If set, the extension may output additional information for debugging purposes |
