@@ -17,7 +17,7 @@ The application uses [npm](https://www.npmjs.com) for public extension listing. 
 
 ## Scripting engines
 
-Extensions are language-agnostic. However, [Node.js](https://nodejs.org) (JavaScript) is the preferred scripting engine as it will shipped with the future Windows application versions, and development utilities and most code examples are targeted for it.
+Extensions are language-agnostic. However, [Node.js](https://nodejs.org) (JavaScript) is the preferred scripting engine as it will shipped with the future Windows application versions, and development utilities, public extension directory and most code examples are targeted for it.
 
 Default scripting engines:
 
