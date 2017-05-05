@@ -4,6 +4,8 @@
 
 AirDC++ extensions use [AirDC++ Web API](http://apidocs.airdcpp.net) to communicate with the application via [WebSockets or HTTP REST calls](https://github.com/airdcpp-web/airdcpp-apidocs/blob/master/communication-protocols.md). Extensions are launched in a separate process with the specified [scripting engine](#scripting-engines) and their lifecycle and corresponding API sessions are managed by the application.
 
+In case you have questions, you may use the issue tracker of this project or join the dev hub at adcs://web-dev.airdcpp.net:1511
+
 ## Resources
 
 - [AirDC++ Web API reference](http://apidocs.airdcpp.net)
