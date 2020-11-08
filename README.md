@@ -46,7 +46,7 @@ Example extension startup command:
 | **logPath** | `string` | C:\AirDC\Settings\extensions\airdcpp-example-ext\logs\ | Directory that can be used for saving extension-specific log files |
 | **settingsPath** | `string` | C:\AirDC\Settings\extensions\airdcpp-example-ext\settings\ | Directory that can be used for saving extension-specific configuration files |
 | **debug** | `boolean` | | If set, the extension may output additional information for debugging purposes |
-| **signalReady** | `boolean` | | This flag will be added only if the [```airdcpp.signalReady```](#signalReady) package.json property is set to true. |
+| **signalReady** | `boolean` | | This flag will be added only if the [```airdcpp.signalReady```](#signalready) package.json property is set to true. |
 
 
 ## Extension content
