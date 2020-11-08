@@ -129,17 +129,23 @@ Note that the application won't actually validate that the current engine versio
 
 **Required fields**
 
-##### `apiVersion` (*number*)
+##### `apiVersion` 
+
+(*number*)
 
 Target Web API version
 
 **Optional fields**
 
-##### `minApiFeatureLevel` (*number*, default value: ```0```)
+##### `minApiFeatureLevel` 
+
+(*number*, default value: ```0```)
 
 Minimum Web API feature level supported by the extension.
 
-##### `signalReady` (*boolean*, default value: ```false```)
+##### `signalReady` 
+
+(*boolean*, default value: ```false```)
 
 Whether the extension will notify the application after it has completed initialization by calling the [/extensions/:id/ready](https://airdcpp.docs.apiary.io/#reference/extension-entities/methods/initialization-completed) API endpoint. By setting this property to ```true```, the extension can ensure that all the necessary hooks and listeners are in place before the application connects to the hubs or performs actions that involve running of hooks (such as validation non-shared bundles on startup or performing share refresh for roots for which the cached directory structure could not be loaded). It's recommended to send the ready signal right after the extension has performed the essetial operations for it to function correctly and perform possible long-running operations after that to avoid delaying the application startup. By default, the application will wait maximum of 5 seconds for the extensions to send the ready signal before continuing with the startup.
 
