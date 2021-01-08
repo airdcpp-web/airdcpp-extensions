@@ -47,7 +47,7 @@ Example extension startup command:
 | **settingsPath** | `string` | C:\AirDC\Settings\extensions\airdcpp-example-ext\settings\ | Directory that can be used for saving extension-specific configuration files |
 | **debug** | `boolean` | | If set, the extension may output additional information for debugging purposes |
 | **signalReady** | `boolean` | | This flag will be added only if the [```airdcpp.signalReady```](#signalready) package.json property is set to true. |
-
+| **appPid** | `number` | 37464 | Process ID of the AirDC++ application. The extension may use the process ID to monitor whether the application is still running, as extensions may not be stopped in case of unclean application shutdowns (and having old extension processes running will cause issues when the application is started again). This parameter is available starting from API feature level 7. |
 
 ## Extension content
 
