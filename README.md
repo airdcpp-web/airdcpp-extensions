@@ -12,16 +12,19 @@ In case you have questions, you may use the issue tracker of this project or joi
 - [Public extension directory](#public-extension-directory)
 - [Scripting engines](#scripting-engines)
 - [Startup parameters](#startup-parameters)
+- [Unmanaged extensions](#unmanaged-extensions)
 - [Extension content](#extension-content)
-  - [Initializing the project](#initializing-the-project)
-  - [Creating installable package](#creating-installable-package)
+  - [Managing the extension structure with npm](#managing-the-extension-structure-with-npm-recommended)
+    - [Initializing the project](#initializing-the-project)
+    - [Creating an installable package](#creating-an-installable-package)
   - [Content structure for manual packaging](#content-structure-for-manual-packaging)
   - [package.json](#packagejson)
+- [Developing an extension](#developing-an-extension)
 
 ## Resources
 
 - [AirDC++ Web API reference](http://apidocs.airdcpp.net)
-- [Example extensions for Javascript (WebSocket)](https://github.com/airdcpp-web/airdcpp-extension-js/tree/master/examples)
+- [Example extensions for JavaScript (WebSocket)](https://github.com/airdcpp-web/airdcpp-extension-js/tree/master/examples)
 - [Example extension for Python 3.x (HTTP REST)](https://github.com/airdcpp-web/airdcpp-example-python-extension)
 - [Extension starter project for JavaScript](https://github.com/airdcpp-web/airdcpp-create-extension)
 
@@ -39,6 +42,14 @@ Default scripting engines:
 - *python3* - [Python 3.x](https://www.python.org)
 
 There must always be a corresponding engine configured with the same name in the application in order for the extension to be launched. The list of scripting engines is currently hardcoded but will be customizable in future application versions. 
+
+## Unmanaged extensions
+
+While this document only covers managed extensions (the extension process is owned by the application), AirDC++ also allows any API consumer [to be registered as an extension](https://airdcpp.docs.apiary.io/#reference/extensions/extensions/register-unmanaged-extension). The benefit of this is the possibility of adding extension-specific settings that can be configured from the user interface.
+
+Registering an unmanaged extension can be useful if you are an extension developer and you want to launch the extension by yourself (e.g. within your development environment or terminal).
+
+JavaScript version of a hybrid wrapper for running an extension in managed/unmanaged mode: [airdcpp-extension-js](https://github.com/airdcpp-web/airdcpp-extension-js/tree/master/src)
 
 
 ## Startup parameters
@@ -72,7 +83,7 @@ The [`npm` CLI utility](https://docs.npmjs.com/cli/npm) (usually shipped with [N
 
 If you want to create an extension from scratch, you may use the `npm init` command in an empty directory that will prompt you about the generic fields. 
 
-#### Creating installable package
+#### Creating an installable package
 
 Executing `npm pack` will pack the extension with correct directory structure without publishing it to npm. 
 
@@ -86,8 +97,7 @@ package
 
 All extension resources should be put inside a single directory (generally `package`) with `package.json` directly under it. For installation, the extension should be packed into a .tgz (.tar.gz) file.
 
-Note that the name of the root package directory can be freely chosen. This enables direct installation of tagged releases from GitHub, assuming that the repository contains all files that are required for running the extension.
-
+Note that the name of the root package directory can be freely chosen. This enables direct installation of tagged releases from GitHub, assuming that the repository contains all the files that are required for running the extension.
 
 
 ### package.json
@@ -161,6 +171,15 @@ Minimum Web API feature level supported by the extension.
 
 Whether the extension will notify the application after it has completed initialization by calling the [/extensions/:id/ready](https://airdcpp.docs.apiary.io/#reference/extension-entities/methods/initialization-completed) API endpoint. By setting this property to ```true```, the extension can ensure that all the necessary hooks and listeners are in place before the application connects to the hubs or performs actions that involve running of hooks (such as validation non-shared bundles on startup or performing share refresh for roots for which the cached directory structure could not be loaded).
 
-It's recommended to send the ready signal right after the extension has performed the essetial operations for it to function correctly and perform possible long-running operations after that to avoid delaying the application startup. By default, the application will wait maximum of 5 seconds for the extensions to send the ready signal before continuing with the startup.
+It's recommended to send the ready signal right after the extension has performed the essetial operations for it to function correctly and perform possible long-running operations afterwards to avoid delaying the application startup. By default, the application will wait maximum of 5 seconds for the extensions to send the ready signal before continuing with the startup.
 
 This field is supported with application versions with API feature level 6 or newer. When the value of the field is set to ```true``` and the property is supported by the current application version, the ```signalReady``` flag will be added in the extension startup parameters.
+
+
+## Developing an extension
+
+When developing a new extension, you probably don't want to package and install it every time you need to test a new change. In order to avoid this, you can place your extension project inside a new directory within the global application extension directory (e.g. ```C:\AirDC\Settings\extensions\airdcpp-my-new-extension```). Note that the directory structure must follow the specifications listed under the [Extension content section](#extension-content), including having a proper `package.json` file in place, as the application won't be able to launch the extension otherwise.
+
+If the application is already running, you must restart it for the new extension to be detected because the directory content is scanned only during application startup. After the extension has been loaded in the application, you may update the extension entry code as you wish; the current version on disk will be loaded each time when the extension is restarted. Note that changes made in the `package.json` won't take effect until the application has been restarted.
+
+If you want to launch the extension from within your development environment or terminal instead, please see the (Unmanaged extensions section)[#unmanaged-extensions].
