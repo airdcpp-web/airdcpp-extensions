@@ -1,10 +1,22 @@
-# AirDC++ extensions
+# AirDC++ extension specifications
 
 >This document defines the low-level AirDC++ extension specifications. If you are looking into developing an own extension, you might want to check out the [airdcpp-create-extension](https://github.com/airdcpp-web/airdcpp-create-extension) JavaScript starter project instead, which provides various abstractions for developers.
 
 AirDC++ extensions use [AirDC++ Web API](http://apidocs.airdcpp.net) to communicate with the application via [WebSockets or HTTP REST calls](https://github.com/airdcpp-web/airdcpp-apidocs/blob/master/communication-protocols.md). Extensions are launched in a separate process with the specified [scripting engine](#scripting-engines) and their lifecycle and corresponding API sessions are managed by the application.
 
 In case you have questions, you may use the issue tracker of this project or join the dev hub at adcs://web-dev.airdcpp.net:1511
+
+## Table of contents
+
+- [Resources](#resources)
+- [Public extension directory](#public-extension-directory)
+- [Scripting engines](#scripting-engines)
+- [Startup parameters](#startup-parameters)
+- [Extension content](#extension-content)
+  - [Initializing the project](#initializing-the-project)
+  - [Creating installable package](#creating-installable-package)
+  - [Content structure for manual packaging](#content-structure-for-manual-packaging)
+  - [package.json](#packagejson)
 
 ## Resources
 
